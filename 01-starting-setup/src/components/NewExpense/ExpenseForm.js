@@ -25,7 +25,7 @@ const ExpenseForm = (props) => {
     if (!wasCancelClicked) {
       const expenseData = {
         title: enteredTitle,
-        amount: enteredAmount,
+        amount: +enteredAmount,
         date: new Date(enteredDate),
       };
 
@@ -58,7 +58,7 @@ const ExpenseForm = (props) => {
   if (!formActive) {
     return (
       <form onSubmit={changeFormHandler}>
-        <div className="new-expenseactions">
+        <div style={{textAlign: 'center'}}>
           <button type="submit">Add New Expense</button>
         </div>
       </form>
