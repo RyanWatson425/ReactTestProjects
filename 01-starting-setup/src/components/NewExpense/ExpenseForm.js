@@ -5,28 +5,65 @@ const ExpenseForm = (props) => {
   const [enteredTitle, setEnteredTitle] = useState("");
   const [enteredAmount, setEnteredAmount] = useState("");
   const [enteredDate, setEnteredDate] = useState("");
+  const [formActive, setFormActive] = useState(false);
+  const [wasCancelClicked, setWasCancelClicked] = useState(false);
 
   const titleChangeHandler = (event) => {
     setEnteredTitle(event.target.value);
   };
+
   const amountChangeHandler = (event) => {
     setEnteredAmount(event.target.value);
   };
+
   const dateChangeHandler = (event) => {
     setEnteredDate(event.target.value);
   };
+
   const submitHandler = (event) => {
     event.preventDefault();
-    const expenseData = {
-      title: enteredTitle,
-      amount: enteredAmount,
-      date: new Date(enteredDate),
-    };
-    props.onSaveExpenseData(expenseData);
-    setEnteredTitle("");
-    setEnteredAmount("");
-    setEnteredDate("");
+    if (!wasCancelClicked) {
+      const expenseData = {
+        title: enteredTitle,
+        amount: enteredAmount,
+        date: new Date(enteredDate),
+      };
+
+      props.onSaveExpenseData(expenseData);
+    } else {
+      onCancelClick();
+    }
+      setEnteredTitle("");
+      setEnteredAmount("");
+      setEnteredDate("");
+
+    setFormActive((prevFormActive) => {
+      return !prevFormActive;
+    });
   };
+
+  const changeFormHandler = (event) => {
+    event.preventDefault();
+    setFormActive((prevFormActive) => {
+      return !prevFormActive;
+    });
+  }
+
+  const onCancelClick = () => {
+    setWasCancelClicked((prevWasCancelClicked) => {
+      return !prevWasCancelClicked;
+    });
+  }
+
+  if (!formActive) {
+    return (
+      <form onSubmit={changeFormHandler}>
+        <div className="new-expenseactions">
+          <button type="submit">Add New Expense</button>
+        </div>
+      </form>
+    );
+  }
 
   return (
     <form onSubmit={submitHandler}>
@@ -61,7 +98,8 @@ const ExpenseForm = (props) => {
         </div>
       </div>
       <div className="new-expenseactions">
-        <button type="submit">Add Expense</button>
+        <button type="submit">Add New Expense</button>
+        <button onClick={onCancelClick} type="submit">Cancel</button>
       </div>
     </form>
   );
