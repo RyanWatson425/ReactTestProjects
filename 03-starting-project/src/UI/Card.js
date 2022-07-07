@@ -12,13 +12,16 @@ const Card = () => {
             return [{'age': age, 'username': username}, ...prevUserInfoList];
         });
     }
+    //TODO: 
+    //1) add css 
+    //2) add ability to delete user entries on click
+    //3) add validation to make sure you aren't submitting with nothing (and possibly validation that entry is a string/int)
+    //4) reset the user input box once a submit has been done
+    //5) learn how to make the error modal
 
     return (
         <div>
             <InputForm setAge={setAge} setUsername={setUsername} onAddNewUser={onAddNewUser}/>
-            <h3>
-                {`In Card.js: \n age: ${age} \n username: ${username}`}
-            </h3>
             <UserList userInfoList={userInfoList}/>
         </div>
     );
