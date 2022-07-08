@@ -1,6 +1,7 @@
 import { useState, React } from 'react';
 import InputForm from '../components/InputForm';
 import UserList from '../components/UserList';
+import styles from './Card.module.css';
 
 const Card = () => {
     const [username, setUsername] = useState();
@@ -20,7 +21,7 @@ const Card = () => {
     //5) learn how to make the error modal
 
     return (
-        <div>
+        <div className={styles.card}>
             <InputForm setAge={setAge} setUsername={setUsername} onAddNewUser={onAddNewUser}/>
             <UserList userInfoList={userInfoList}/>
         </div>

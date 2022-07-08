@@ -1,0 +1,9 @@
+.userList {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    color: white;
+    background-color: white;
+    border-radius: 10px 10px;
+    border: 1px solid white;
+}

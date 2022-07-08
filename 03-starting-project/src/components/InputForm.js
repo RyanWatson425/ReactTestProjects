@@ -1,4 +1,5 @@
 import { React } from "react";
+import styles from './InputForm.module.css';
 
 const InputForm = (props) => {
     const usernameInputChangeHandler = (event) => {
@@ -15,13 +16,17 @@ const InputForm = (props) => {
     }
 
   return (
-    <div>
+    <div className={styles.inputForm}>
       <form onSubmit={onSubmitHandler}>
-        <h2>Username:</h2>
+        <div className={styles.formControl}>
+        Username
         <input onChange={usernameInputChangeHandler}></input>
-        <h2>Age(Years):</h2>
+        Age(Years)
         <input onChange={ageInputChangeHandler}></input>
-        <button type='submit'>Add User</button>
+        </div>
+        <div>
+          <button className={styles.button} type='submit'>Add User</button>
+        </div>
       </form>
     </div>
   );
