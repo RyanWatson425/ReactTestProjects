@@ -22,7 +22,7 @@
 
 .formControl input{
     display: block;
-    width: 100%;
+    max-width: 40rem;
     border: 1px solid #ccc;
     font: inherit;
     line-height: 1.5rem;

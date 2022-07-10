@@ -7,8 +7,16 @@ const Card = () => {
     const [username, setUsername] = useState();
     const [age, setAge] = useState();
     const [userInfoList, setUserInfoList] = useState([]);
+    const [error, setError] = useState();
 
     const onAddNewUser = () => {
+        if (age.trim().length === 0 || username.trim().length === 0) {
+            setError({title: 'Invalid Input', message: 'Please enter a valid name and age (non empty values)'});
+            return;
+        } else if (+age < 1) {
+            setError({title: 'Invalid Age', message: 'Please enter a valid age'});
+            return;
+        }
         setUserInfoList((prevUserInfoList) => {
             return [{'age': age, 'username': username}, ...prevUserInfoList];
         });
@@ -23,7 +31,7 @@ const Card = () => {
     return (
         <div className={styles.card}>
             <InputForm setAge={setAge} setUsername={setUsername} onAddNewUser={onAddNewUser}/>
-            <UserList userInfoList={userInfoList}/>
+            <UserList error={error} userInfoList={userInfoList}/>
         </div>
     );
 };
