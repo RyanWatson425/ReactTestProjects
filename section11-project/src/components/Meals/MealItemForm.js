@@ -1,20 +1,21 @@
 import React from "react";
 import MealItem from "./MealItem";
-import Input from '../UI/Input';
+import classes from "./MealItemForm.module.css";
 
 const MealItemForm = (props) => {
   return (
-    <div>
+    <form className={classes.form}>
       {props.mealList.map((meal) => (
-        <MealItem
-          id={meal.id}
-          name={meal.name}
-          description={meal.description}
-          price={meal.price}
-        />
+        <div>
+          <MealItem
+            id={meal.id}
+            name={meal.name}
+            description={meal.description}
+            price={meal.price}
+          />
+        </div>
       ))}
-      <Input />
-    </div>
+    </form>
   );
 };
 

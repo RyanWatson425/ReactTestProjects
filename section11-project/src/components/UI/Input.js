@@ -5,7 +5,7 @@ const Input = () => {
   return (
     <div className={classes.input}>
       <label>Amount</label>
-      <input type='number' value='0'></input>
+      <input type='number'></input>
     </div>
   );
 };

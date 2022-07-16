@@ -1,19 +1,21 @@
 import React from "react";
+import Input from '../UI/Input';
 import classes from "./MealItem.module.css";
 
 const MealItem = (props) => {
-  //unused classes.meal css class (?)
   return (
     <div className={classes.meal} key={props.id}>
-      <span>
+      <div>
         <h3>{props.name}</h3>
-      </span>
-      <span className={classes.description}>
+      </div>
+      <div className={classes.description}>
         <p>{props.description}</p>
-      </span>
-      <span>
+      </div>
+      <div>
         <h3 className={classes.price}>{"$" + props.price}</h3>
-      </span>
+      </div>
+      <Input />
+      <button type="submit">+Add</button>
     </div>
   );
 };
