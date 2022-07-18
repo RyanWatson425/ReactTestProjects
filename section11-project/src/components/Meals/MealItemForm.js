@@ -6,9 +6,8 @@ const MealItemForm = (props) => {
   return (
     <form className={classes.form}>
       {props.mealList.map((meal) => (
-        <div>
+        <div key={meal.id}>
           <MealItem
-            id={meal.id}
             name={meal.name}
             description={meal.description}
             price={meal.price}
