@@ -1,12 +1,13 @@
 import Card from './components/UI/Card';
 import Header from './components/Layout/Header';
+import React from 'react';
 
 function App() {
   return (
-    <div>
-      <Header/>
+    <React.Fragment>
+      <Header />
       <Card/>
-    </div>
+    </React.Fragment>
   );
 }
 

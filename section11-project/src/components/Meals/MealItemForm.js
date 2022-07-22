@@ -4,9 +4,9 @@ import classes from "./MealItemForm.module.css";
 
 const MealItemForm = (props) => {
   return (
-    <form className={classes.form}>
+    <form>
       {props.mealList.map((meal) => (
-        <div key={meal.id}>
+        <div className={classes.form} key={meal.id}>
           <MealItem
             name={meal.name}
             description={meal.description}

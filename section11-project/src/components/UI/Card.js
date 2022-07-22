@@ -1,6 +1,7 @@
 import React from "react";
 import classes from "./Card.module.css";
 import MealItemForm from "../Meals/MealItemForm";
+import MealSummary from "../Meals/MealsSummary";
 
 const Card = () => {
   const DUMMY_MEALS = [
@@ -30,9 +31,12 @@ const Card = () => {
     },
   ];
   return (
-    <div className={classes.card}>
-      <MealItemForm mealList={DUMMY_MEALS} />
-    </div>
+    <React.Fragment>
+      <div className={classes.card}>
+        <MealSummary />
+        <MealItemForm mealList={DUMMY_MEALS} />
+      </div>
+    </React.Fragment>
   );
 };
 
