@@ -1,10 +1,10 @@
-import { useState } from "react";
+import { useState, useCallback } from "react";
 
-const useFetch = (requestConfig, applyData) => {
+const useFetch = (applyData) => {
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState(null);
 
-  const sendRequest = async () => {
+  const sendRequest = useCallback(async (requestConfig) => {
     setIsLoading(true);
     setError(null);
     try {
@@ -27,7 +27,7 @@ const useFetch = (requestConfig, applyData) => {
       setError(err.message || "Something went wrong!");
     }
     setIsLoading(false);
-};
+}, [applyData]);
     return {
         // isLoading: isLoading,
         // error: error,
