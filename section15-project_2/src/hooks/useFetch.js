@@ -1,21 +1,19 @@
 import { useState, useCallback } from "react";
 
-const useFetch = (applyData) => {
+const useFetch = () => {
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState(null);
 
-  const sendRequest = useCallback(async (requestConfig) => {
+  const sendRequest = useCallback(async (requestConfig, applyData) => {
     setIsLoading(true);
     setError(null);
     try {
-      const response = await fetch(
-        requestConfig.url, {
-            //the ternary operators give flexibility so when calling useFetch you don't need to pass dummy data for args you aren't using
-            method: requestConfig.method ? requestConfig.method : 'GET',
-            headers: requestConfig.headers ? requestConfig.headers : {},
-            body: requestConfig.body ? JSON.stringify(requestConfig.body) : null
-        }
-      );
+      const response = await fetch(requestConfig.url, {
+        //the ternary operators give flexibility so when calling useFetch you don't need to pass dummy data for args you aren't using
+        method: requestConfig.method ? requestConfig.method : "GET",
+        headers: requestConfig.headers ? requestConfig.headers : {},
+        body: requestConfig.body ? JSON.stringify(requestConfig.body) : null,
+      });
 
       if (!response.ok) {
         throw new Error("Request failed!");
@@ -27,16 +25,16 @@ const useFetch = (applyData) => {
       setError(err.message || "Something went wrong!");
     }
     setIsLoading(false);
-}, [applyData]);
-    return {
-        // isLoading: isLoading,
-        // error: error,
-        // sendRequest: sendRequest 
-        // OR
-        isLoading,
-        error,
-        sendRequest
-    };
+  }, []);
+  return {
+    // isLoading: isLoading,
+    // error: error,
+    // sendRequest: sendRequest
+    // OR
+    isLoading,
+    error,
+    sendRequest,
   };
+};
 
 export default useFetch;
