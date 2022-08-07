@@ -4,15 +4,19 @@ const SimpleInput = (props) => {
   //in reality you only use Ref or State
   //if you want to reset the entered input or do instant validation, use state
   //if you want to just look at the value, use ref, since state may be overkill
-  const nameInputRef = useRef();
+ // const nameInputRef = useRef();
   const [enteredName, setEnteredName] = useState("");
-  const [enteredNameIsValid, setEnteredNameIsValid] = useState(false);
   const [enteredNameTouched, setEnteredNameTouched] = useState(false);
 
+  const enteredNameIsValid = enteredName.trim() !== ''; //this can be a const because it will get recreated whenever component reevaluates
   const nameInputIsInvalid = !enteredNameIsValid && enteredNameTouched;
 
   const nameInputChangeHandler = (event) => {
     setEnteredName(event.target.value);
+  };
+
+  const nameInputBlurHandler = (event) => {
+    setEnteredNameTouched(true);
   };
 
   const formSubmissionHandler = (event) => {
@@ -20,18 +24,18 @@ const SimpleInput = (props) => {
 
     setEnteredNameTouched(true);
 
-    if (enteredName.trim() === '') {
-      setEnteredNameIsValid(false);
+    if (!enteredNameIsValid) {
       return;
     }
-    setEnteredNameIsValid(true);
 
     console.log(enteredName);
 
-    const enteredValue = nameInputRef.current.value;
-    console.log(enteredValue);
+    // const enteredValue = nameInputRef.current.value;
+    // console.log(enteredValue);
 
+    //nameInputRef.current.value = ''; => NOT GOOD PRACTICE, DON'T MANIPULATE THE DOM DIRECTLY
     setEnteredName('');
+    setEnteredNameTouched(false);
   };
 
   const nameInputClasses = nameInputIsInvalid ? 'form-control invalid' : 'form-control';
@@ -41,9 +45,10 @@ const SimpleInput = (props) => {
       <div className={nameInputClasses}>
         <label htmlFor="name">Your Name</label>
         <input
-          ref={nameInputRef}
+          // ref={nameInputRef}
           type="text"
           id="name"
+          onBlur={nameInputBlurHandler}
           onChange={nameInputChangeHandler}
           value={enteredName}
         />
